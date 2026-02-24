@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>ORION - Help Center</title>
+        <title>ORION - Customize Weights</title>
 
         <!-- CSS FILES -->      
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,108 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
+        <link href="css/apexcharts.css" rel="stylesheet">
+
         <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+        <style>
+            .sentiment-card {
+                border-radius: 20px;
+                transition: transform 0.2s;
+            }
+            .sentiment-card:hover {
+                transform: translateY(-5px);
+            }
+            .keyword-badge {
+                background-color: #f0f2f5;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                margin: 0 5px 5px 0;
+                display: inline-block;
+            }
+            .dimension-score {
+                font-size: 1.2rem;
+                font-weight: 700;
+            }
+            .risk-high {
+                color: #dc3545;
+            }
+            .risk-medium {
+                color: #ffc107;
+            }
+            .risk-low {
+                color: #28a745;
+            }
+            .weight-slider {
+                width: 100%;
+                margin: 10px 0;
+            }
+            .weight-value {
+                font-weight: 700;
+                min-width: 45px;
+                text-align: right;
+            }
+            .preset-btn {
+                border-radius: 30px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                margin: 0 5px 10px 0;
+                border: 1px solid #dee2e6;
+                background: white;
+                transition: all 0.2s;
+            }
+            .preset-btn:hover {
+                background: #e9ecef;
+            }
+            .preset-btn.active {
+                background: #0d6efd;
+                color: white;
+                border-color: #0d6efd;
+            }
+            .comparison-badge {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+                border-radius: 12px;
+            }
+            .score-change-positive {
+                color: #28a745;
+                font-weight: 600;
+            }
+            .score-change-negative {
+                color: #dc3545;
+                font-weight: 600;
+            }
+            .live-badge {
+                background-color: #dc3545;
+                color: white;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.7; }
+                100% { opacity: 1; }
+            }
+            .weight-card {
+                border-left: 4px solid;
+                transition: all 0.2s;
+            }
+            .weight-card.safety {
+                border-left-color: #28a745;
+            }
+            .weight-card.growth {
+                border-left-color: #17a2b8;
+            }
+            .weight-card.volatility {
+                border-left-color: #ffc107;
+            }
+            .weight-card.esg {
+                border-left-color: #198754;
+            }
+        </style>
     </head>
     
     <body>
@@ -37,32 +138,32 @@
             </button>
 
             <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" name="search" type="text" placeholder="Search assets, sectors..." aria-label="Search">
             </form>
 
             <div class="navbar-nav me-lg-2">
                 <div class="nav-item text-nowrap d-flex align-items-center">
                     <div class="dropdown ps-3">
-                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarLightDropdownMenuLink">
                             <i class="bi-bell"></i>
                             <span class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
                                 <span class="visually-hidden">New alerts</span>
                             </span>
                         </a>
 
-                        <ul class="dropdown-menu notifications-block-wrap bg-white shadow">
+                        <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow" aria-labelledby="navbarLightDropdownMenuLink">
                             <small>Notifications</small>
 
                             <li class="notifications-block border-bottom pb-2 mb-2">
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex  align-items-center" href="#">
                                     <div class="notifications-icon-wrap bg-success">
                                         <i class="notifications-icon bi-check-circle-fill"></i>
                                     </div>
 
                                     <div>
-                                        <span>Your account has been created successfuly.</span>
+                                        <span>Your custom weights have been saved</span>
 
-                                        <p>12 days ago</p>
+                                        <p>2 mins ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -74,9 +175,9 @@
                                     </div>
 
                                     <div>
-                                        <span>Please check. We have sent a Daily report.</span>
+                                        <span>New sector sentiment data available</span>
 
-                                        <p>10 days ago</p>
+                                        <p>15 mins ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -88,7 +189,7 @@
                                     </div>
 
                                     <div>
-                                        <span>Account verification failed.</span>
+                                        <span>Weight adjustment recommended for your profile</span>
 
                                         <p>1 hour ago</p>
                                     </div>
@@ -208,14 +309,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="Overview.html">
                                     <i class="bi-house-fill me-2"></i>
-                                    Overview
+                                    Sentiment Overview
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="wallet.html">
-                                    <i class="bi-wallet me-2"></i>
-                                    My Wallet
+                                    <i class="bi-bar-chart me-2"></i>
+                                    Asset Classes
                                 </a>
                             </li>
 
@@ -227,29 +328,30 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="setting.html">
-                                    <i class="bi-gear me-2"></i>
-                                    Settings
+                                <a class="nav-link active" href="setting.html">
+                                    <i class="bi-coin me-2"></i>
+                                    Individual Assets
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="help-center.html">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
+                                <a class="nav-link" href="help-center.html">
+                                    <i class="bi-sliders2 me-2"></i>
+                                    Customize Weights
                                 </a>
                             </li>
 
                             <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
                                 <img src="images/credit-card.png" class="img-fluid" alt="">
-
-                                <a class="btn custom-btn" href="#">Upgrade</a>
+                                <h6 class="text-white mb-3">Premium Features</h6>
+                                <p class="text-white-50 small mb-3">Save multiple weight profiles and get AI recommendations</p>
+                                <a class="btn custom-btn btn-white" href="#">Upgrade Now</a>
                             </li>
 
                             <li class="nav-item border-top mt-auto pt-2">
                                 <a class="nav-link" href="login.html">
                                     <i class="bi-box-arrow-left me-2"></i>
-                                Logout
+                                    Logout
                                 </a>
                             </li>
                         </ul>
@@ -257,92 +359,499 @@
                 </nav>
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
-                    <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">How can we help?</h1>
+                    <div class="title-group mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h2 mb-0">Customize Your Weights</h1>
+                            <small class="text-muted">Adjust dimension weights to see scores that match your investment style</small>
+                        </div>
+                        <div>
+                            <span class="badge bg-warning text-dark me-2"><i class="bi-star-fill"></i> Premium Feature</span>
+                            <span class="live-badge"><i class="bi-circle-fill me-1"></i>LIVE PREVIEW</span>
+                        </div>
                     </div>
 
-                    <div class="row my-4">
-                        <div class="col-lg-7 col-12">
-                            <div class="custom-block bg-white">
-                                <form class="custom-form search-form" action="#" method="post" role="form">
-                                    <div class="row">
-                                        <div class="col-lg-12 mb-2">
-                                            <h6>Search for the topics</h6>
-                                        </div>
-
-                                        <div class="col-lg-8 col-md-8 col-12">
-                                            <input class="form-control mb-lg-0 mb-md-0" name="search" type="text" placeholder="Search" aria-label="Search">
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-4 col-12">
-                                            <button type="submit" class="form-control">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="custom-block custom-block-faq">
-                                <h5 class="mb-4">Frequently Asked Questions</h5>
-
-                                <strong class="d-block mb-2">What is Mini Finance Template?</strong>
-
-                                <p>ORION Template includes total 6 HTML pages for your customizations. It is free of charge provided by Template website.</p>
-                                
-                                <strong class="d-block mt-3 mb-2">What is Free HTML Template?</strong>
-
-                                <p>Free HTML Template is a ready-made web page based on HTML CSS codes.</p>
-
-                                <strong class="d-block mt-3 mb-2">What is the best code editor?</strong>
-
-                                <p>Popular code editors are Dreamweaver, Notepad++, Visual Studio Code, Rapid CSS, Sublime Text and Atom to edit HTML CSS JS codes and put in your own web contents.</p>
-
-                                 <strong class="d-block mt-3 mb-2">Are all templates free to download?</strong>
-
-                                 <p>Yes, all CSS templates are 100% free to download and use for your websites. You can also use them for learning HTML, CSS, and JavaScripts.</p>
-                            </div>
+                    <!-- Preset Profiles -->
+                    <div class="custom-block bg-white mb-4">
+                        <h5 class="mb-3">Quick Start Profiles</h5>
+                        <p class="text-muted small mb-3">Choose a preset or create your own</p>
+                        <div class="d-flex flex-wrap">
+                            <button class="preset-btn active" onclick="applyPreset('balanced')" id="preset-balanced">⚖️ Balanced (25% each)</button>
+                            <button class="preset-btn" onclick="applyPreset('growth')" id="preset-growth">🚀 Growth Seeker</button>
+                            <button class="preset-btn" onclick="applyPreset('conservative')" id="preset-conservative">🛡️ Conservative</button>
+                            <button class="preset-btn" onclick="applyPreset('esg')" id="preset-esg">🌱 ESG Focused</button>
+                            <button class="preset-btn" onclick="applyPreset('volatility')" id="preset-volatility">📊 Volatility Aware</button>
                         </div>
+                        <div class="mt-3 small text-muted">
+                            <i class="bi-info-circle me-1"></i> Presets automatically adjust weights to sum to 100%
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <!-- Weight Sliders Column -->
                         <div class="col-lg-5 col-12">
-                            <div class="custom-block custom-block-contact">
-                                <h6 class="mb-4">Still can’t find what you looking for?</h6>
-
-                                <p>
-                                    <strong>Call us:</strong>
-                                    <a href="tel: 305-240-9671" class="ms-2">
-                                        (60) 
-                                        305-240-9671
-                                    </a>
-                                </p>
-
-                                <a href="#" class="btn custom-btn custom-btn-bg-white mt-3">
-                                    Chat with us
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <footer class="site-footer">
-                        <div class="container">
-                            <div class="row">
+                            <div class="custom-block bg-white mb-4">
+                                <h5 class="mb-4">Adjust Dimension Weights</h5>
                                 
-                                <div class="col-lg-12 col-12">
-                                    <p class="copyright-text">Copyright © ORION 2026 </p>
+                                <!-- Safety -->
+                                <div class="weight-card safety p-3 mb-3 rounded-3 bg-light">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="fw-bold">Safety / Capital Preservation</span>
+                                            <i class="bi-shield-check text-success ms-2"></i>
+                                        </div>
+                                        <span class="weight-value" id="safety-value">25%</span>
+                                    </div>
+                                    <input type="range" class="form-range weight-slider" id="safety-slider" min="0" max="100" value="25" step="1" oninput="updateWeights()">
+                                    <div class="d-flex justify-content-between small text-muted">
+                                        <span>Ignore</span>
+                                        <span>Balanced</span>
+                                        <span>Priority</span>
+                                    </div>
                                 </div>
 
+                                <!-- Growth -->
+                                <div class="weight-card growth p-3 mb-3 rounded-3 bg-light">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="fw-bold">Growth / Opportunity</span>
+                                            <i class="bi-rocket text-primary ms-2"></i>
+                                        </div>
+                                        <span class="weight-value" id="growth-value">25%</span>
+                                    </div>
+                                    <input type="range" class="form-range weight-slider" id="growth-slider" min="0" max="100" value="25" step="1" oninput="updateWeights()">
+                                    <div class="d-flex justify-content-between small text-muted">
+                                        <span>Ignore</span>
+                                        <span>Balanced</span>
+                                        <span>Priority</span>
+                                    </div>
+                                </div>
+
+                                <!-- Volatility -->
+                                <div class="weight-card volatility p-3 mb-3 rounded-3 bg-light">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="fw-bold">Volatility / Uncertainty</span>
+                                            <i class="bi-graph-up-arrow text-warning ms-2"></i>
+                                        </div>
+                                        <span class="weight-value" id="volatility-value">25%</span>
+                                    </div>
+                                    <input type="range" class="form-range weight-slider" id="volatility-slider" min="0" max="100" value="25" step="1" oninput="updateWeights()">
+                                    <div class="d-flex justify-content-between small text-muted">
+                                        <span>Ignore</span>
+                                        <span>Balanced</span>
+                                        <span>Priority</span>
+                                    </div>
+                                </div>
+
+                                <!-- ESG -->
+                                <div class="weight-card esg p-3 mb-3 rounded-3 bg-light">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="fw-bold">ESG / Responsibility</span>
+                                            <i class="bi-recycle text-success ms-2"></i>
+                                        </div>
+                                        <span class="weight-value" id="esg-value">25%</span>
+                                    </div>
+                                    <input type="range" class="form-range weight-slider" id="esg-slider" min="0" max="100" value="25" step="1" oninput="updateWeights()">
+                                    <div class="d-flex justify-content-between small text-muted">
+                                        <span>Ignore</span>
+                                        <span>Balanced</span>
+                                        <span>Priority</span>
+                                    </div>
+                                </div>
+
+                                <!-- Total and Actions -->
+                                <div class="d-flex justify-content-between align-items-center mt-4 pt-2 border-top">
+                                    <div>
+                                        <span class="fw-bold">Total Weight:</span>
+                                        <span id="total-weight" class="ms-2 badge bg-success">100%</span>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-outline-secondary btn-sm me-2" onclick="resetToDefault()">Reset</button>
+                                        <button class="btn btn-primary btn-sm" onclick="saveWeights()">Save Custom Profile</button>
+                                    </div>
+                                </div>
+                                <div id="weight-error" class="text-danger small mt-2" style="display: none;">
+                                    <i class="bi-exclamation-triangle me-1"></i> Total weight must equal 100%
+                                </div>
+                            </div>
+
+                            <!-- How It Works -->
+                            <div class="custom-block bg-white">
+                                <h5 class="mb-3">How Weighting Works</h5>
+                                <p class="small text-muted mb-3">Your custom weights recalculate overall scores for all sectors and assets:</p>
+                                <div class="bg-light p-3 rounded-3">
+                                    <code class="text-dark">Overall Score = (Safety × w1) + (Growth × w2) + (Volatility × w3) + (ESG × w4)</code>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-success rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                        <small>Safety weights: capital preservation, stable cash flow</small>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-info rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                        <small>Growth weights: opportunity, innovation, expansion</small>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-warning rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                        <small>Volatility weights: uncertainty, risk, price swings</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-success rounded-circle me-2" style="width: 12px; height: 12px; opacity: 0.7;"></div>
+                                        <small>ESG weights: environmental, social, governance factors</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview Column -->
+                        <div class="col-lg-7 col-12">
+                            <!-- Impact Summary -->
+                            <div class="custom-block bg-white mb-4">
+                                <h5 class="mb-3">Impact on Your Portfolio View</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="bg-light p-3 rounded-3 mb-3">
+                                            <small class="text-muted">Tech Sector (Default: 0.45)</small>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="h4 mb-0" id="tech-sector-score">0.45</span>
+                                                <span id="tech-sector-change" class="comparison-badge bg-secondary text-white">Default</span>
+                                            </div>
+                                            <div class="progress mt-2" style="height: 6px;">
+                                                <div class="progress-bar bg-primary" id="tech-sector-bar" style="width: 45%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="bg-light p-3 rounded-3 mb-3">
+                                            <small class="text-muted">Healthcare Sector (Default: 0.58)</small>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="h4 mb-0" id="health-sector-score">0.58</span>
+                                                <span id="health-sector-change" class="comparison-badge bg-secondary text-white">Default</span>
+                                            </div>
+                                            <div class="progress mt-2" style="height: 6px;">
+                                                <div class="progress-bar bg-primary" id="health-sector-bar" style="width: 58%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Asset Preview Cards -->
+                            <div class="custom-block bg-white mb-4">
+                                <h5 class="mb-3">Asset Score Preview</h5>
+                                <p class="small text-muted mb-3">How your weights affect individual assets</p>
+                                
+                                <!-- Nvidia Preview -->
+                                <div class="border rounded-3 p-3 mb-3">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">Nvidia (NVDA) <span class="badge bg-danger ms-2">High Risk</span></h6>
+                                            <small class="text-muted">Tech sector</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="d-flex align-items-center">
+                                                <span class="h5 mb-0 me-2" id="nvda-custom">0.66</span>
+                                                <small class="text-muted">/ 0.43 default</small>
+                                            </div>
+                                            <span id="nvda-change" class="badge bg-success">+54%</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 4px;">
+                                        <div class="progress-bar bg-primary" id="nvda-bar" style="width: 66%"></div>
+                                    </div>
+                                    <div class="row mt-2 small text-muted">
+                                        <div class="col">Safety: 0.20</div>
+                                        <div class="col">Growth: 0.88</div>
+                                        <div class="col">Vol: 0.75</div>
+                                        <div class="col">ESG: 0.40</div>
+                                    </div>
+                                </div>
+
+                                <!-- Apple Preview -->
+                                <div class="border rounded-3 p-3 mb-3">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">Apple (AAPL) <span class="badge bg-warning text-dark ms-2">Medium Risk</span></h6>
+                                            <small class="text-muted">Tech sector</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="d-flex align-items-center">
+                                                <span class="h5 mb-0 me-2" id="aapl-custom">0.55</span>
+                                                <small class="text-muted">/ 0.60 default</small>
+                                            </div>
+                                            <span id="aapl-change" class="badge bg-danger">-8%</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 4px;">
+                                        <div class="progress-bar bg-primary" id="aapl-bar" style="width: 55%"></div>
+                                    </div>
+                                    <div class="row mt-2 small text-muted">
+                                        <div class="col">Safety: 0.55</div>
+                                        <div class="col">Growth: 0.60</div>
+                                        <div class="col">Vol: 0.40</div>
+                                        <div class="col">ESG: 0.65</div>
+                                    </div>
+                                </div>
+
+                                <!-- ESG Leader Preview -->
+                                <div class="border rounded-3 p-3">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">ESG Leaders ETF <span class="badge bg-success ms-2">Low Risk</span></h6>
+                                            <small class="text-muted">ESG sector</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="d-flex align-items-center">
+                                                <span class="h5 mb-0 me-2" id="esg-custom">0.70</span>
+                                                <small class="text-muted">/ 0.65 default</small>
+                                            </div>
+                                            <span id="esg-change" class="badge bg-success">+8%</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 4px;">
+                                        <div class="progress-bar bg-primary" id="esg-bar" style="width: 70%"></div>
+                                    </div>
+                                    <div class="row mt-2 small text-muted">
+                                        <div class="col">Safety: 0.60</div>
+                                        <div class="col">Growth: 0.55</div>
+                                        <div class="col">Vol: 0.40</div>
+                                        <div class="col">ESG: 0.85</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Save Profile Card -->
+                            <div class="custom-block primary-bg">
+                                <h5 class="text-white mb-3">Save Your Custom Profile</h5>
+                                <p class="text-white-50 small mb-3">Premium users can save multiple weight profiles and apply them to their dashboard</p>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="e.g., My Growth Profile" id="profile-name">
+                                    <button class="btn btn-light" type="button" onclick="saveProfile()">Save</button>
+                                </div>
+                                <div class="d-flex text-white-50 small">
+                                    <i class="bi-check-circle-fill text-white me-2"></i>
+                                    Saved profiles sync across devices
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="site-footer mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <p class="copyright-text">Copyright © ORION 2026 | Customizable Sentiment Weights for Individual Investors</p>
+                                </div>
                             </div>
                         </div>
                     </footer>
                 </main>
-
             </div>
         </div>
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/apexcharts.min.js"></script>
         <script src="js/custom.js"></script>
 
+        <script type="text/javascript">
+            // Dimension scores for assets (from documentation)
+            const assetScores = {
+                tech: { safety: 0.25, growth: 0.80, volatility: 0.70, esg: 0.45 },
+                health: { safety: 0.50, growth: 0.55, volatility: 0.45, esg: 0.70 },
+                nvda: { safety: 0.20, growth: 0.88, volatility: 0.75, esg: 0.40 },
+                aapl: { safety: 0.55, growth: 0.60, volatility: 0.40, esg: 0.65 },
+                esgLeader: { safety: 0.60, growth: 0.55, volatility: 0.40, esg: 0.85 }
+            };
+
+            // Default weights
+            let weights = {
+                safety: 25,
+                growth: 25,
+                volatility: 25,
+                esg: 25
+            };
+
+            // Update all displays when sliders change
+            function updateWeights() {
+                // Get slider values
+                weights.safety = parseInt(document.getElementById('safety-slider').value);
+                weights.growth = parseInt(document.getElementById('growth-slider').value);
+                weights.volatility = parseInt(document.getElementById('volatility-slider').value);
+                weights.esg = parseInt(document.getElementById('esg-slider').value);
+
+                // Update displayed values
+                document.getElementById('safety-value').textContent = weights.safety + '%';
+                document.getElementById('growth-value').textContent = weights.growth + '%';
+                document.getElementById('volatility-value').textContent = weights.volatility + '%';
+                document.getElementById('esg-value').textContent = weights.esg + '%';
+
+                // Calculate total
+                const total = weights.safety + weights.growth + weights.volatility + weights.esg;
+                document.getElementById('total-weight').textContent = total + '%';
+
+                // Check if total is 100
+                const errorElement = document.getElementById('weight-error');
+                if (total !== 100) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+
+                // Update preset button states
+                updatePresetButtons();
+
+                // Recalculate scores if total is 100
+                if (total === 100) {
+                    recalculateScores();
+                }
+            }
+
+            // Calculate weighted score
+            function calculateWeightedScore(scores, weights) {
+                const w = {
+                    safety: weights.safety / 100,
+                    growth: weights.growth / 100,
+                    volatility: weights.volatility / 100,
+                    esg: weights.esg / 100
+                };
+                return (scores.safety * w.safety) + (scores.growth * w.growth) + 
+                       (scores.volatility * w.volatility) + (scores.esg * w.esg);
+            }
+
+            // Recalculate all preview scores
+            function recalculateScores() {
+                // Tech sector
+                const techScore = calculateWeightedScore(assetScores.tech, weights);
+                document.getElementById('tech-sector-score').textContent = techScore.toFixed(2);
+                document.getElementById('tech-sector-bar').style.width = (techScore * 100) + '%';
+                
+                // Healthcare sector
+                const healthScore = calculateWeightedScore(assetScores.health, weights);
+                document.getElementById('health-sector-score').textContent = healthScore.toFixed(2);
+                document.getElementById('health-sector-bar').style.width = (healthScore * 100) + '%';
+
+                // NVDA
+                const nvdaScore = calculateWeightedScore(assetScores.nvda, weights);
+                document.getElementById('nvda-custom').textContent = nvdaScore.toFixed(2);
+                document.getElementById('nvda-bar').style.width = (nvdaScore * 100) + '%';
+                const nvdaChange = ((nvdaScore - 0.43) / 0.43 * 100).toFixed(0);
+                document.getElementById('nvda-change').textContent = (nvdaChange > 0 ? '+' : '') + nvdaChange + '%';
+                document.getElementById('nvda-change').className = nvdaChange >= 0 ? 'badge bg-success' : 'badge bg-danger';
+
+                // AAPL
+                const aaplScore = calculateWeightedScore(assetScores.aapl, weights);
+                document.getElementById('aapl-custom').textContent = aaplScore.toFixed(2);
+                document.getElementById('aapl-bar').style.width = (aaplScore * 100) + '%';
+                const aaplChange = ((aaplScore - 0.60) / 0.60 * 100).toFixed(0);
+                document.getElementById('aapl-change').textContent = (aaplChange > 0 ? '+' : '') + aaplChange + '%';
+                document.getElementById('aapl-change').className = aaplChange >= 0 ? 'badge bg-success' : 'badge bg-danger';
+
+                // ESG Leader
+                const esgScore = calculateWeightedScore(assetScores.esgLeader, weights);
+                document.getElementById('esg-custom').textContent = esgScore.toFixed(2);
+                document.getElementById('esg-bar').style.width = (esgScore * 100) + '%';
+                const esgChange = ((esgScore - 0.65) / 0.65 * 100).toFixed(0);
+                document.getElementById('esg-change').textContent = (esgChange > 0 ? '+' : '') + esgChange + '%';
+                document.getElementById('esg-change').className = esgChange >= 0 ? 'badge bg-success' : 'badge bg-danger';
+
+                // Sector comparison badges
+                document.getElementById('tech-sector-change').textContent = techScore !== 0.45 ? 'Custom' : 'Default';
+                document.getElementById('tech-sector-change').className = techScore !== 0.45 ? 'comparison-badge bg-primary text-white' : 'comparison-badge bg-secondary text-white';
+                
+                document.getElementById('health-sector-change').textContent = healthScore !== 0.58 ? 'Custom' : 'Default';
+                document.getElementById('health-sector-change').className = healthScore !== 0.58 ? 'comparison-badge bg-primary text-white' : 'comparison-badge bg-secondary text-white';
+            }
+
+            // Apply preset weights
+            function applyPreset(type) {
+                switch(type) {
+                    case 'balanced':
+                        weights = { safety: 25, growth: 25, volatility: 25, esg: 25 };
+                        break;
+                    case 'growth':
+                        weights = { safety: 10, growth: 50, volatility: 30, esg: 10 };
+                        break;
+                    case 'conservative':
+                        weights = { safety: 60, growth: 10, volatility: 15, esg: 15 };
+                        break;
+                    case 'esg':
+                        weights = { safety: 20, growth: 20, volatility: 20, esg: 40 };
+                        break;
+                    case 'volatility':
+                        weights = { safety: 20, growth: 30, volatility: 40, esg: 10 };
+                        break;
+                }
+
+                // Update sliders
+                document.getElementById('safety-slider').value = weights.safety;
+                document.getElementById('growth-slider').value = weights.growth;
+                document.getElementById('volatility-slider').value = weights.volatility;
+                document.getElementById('esg-slider').value = weights.esg;
+
+                // Update displays
+                updateWeights();
+            }
+
+            // Update preset button active states
+            function updatePresetButtons() {
+                const presets = {
+                    balanced: { safety: 25, growth: 25, volatility: 25, esg: 25 },
+                    growth: { safety: 10, growth: 50, volatility: 30, esg: 10 },
+                    conservative: { safety: 60, growth: 10, volatility: 15, esg: 15 },
+                    esg: { safety: 20, growth: 20, volatility: 20, esg: 40 },
+                    volatility: { safety: 20, growth: 30, volatility: 40, esg: 10 }
+                };
+
+                for (let [key, preset] of Object.entries(presets)) {
+                    const isActive = preset.safety === weights.safety && 
+                                    preset.growth === weights.growth && 
+                                    preset.volatility === weights.volatility && 
+                                    preset.esg === weights.esg;
+                    
+                    const btn = document.getElementById(`preset-${key}`);
+                    if (btn) {
+                        if (isActive) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    }
+                }
+            }
+
+            // Reset to default (balanced)
+            function resetToDefault() {
+                applyPreset('balanced');
+            }
+
+            // Save weights (demo)
+            function saveWeights() {
+                if (weights.safety + weights.growth + weights.volatility + weights.esg !== 100) {
+                    alert('Weights must sum to 100%');
+                    return;
+                }
+                alert('Custom weights saved! (Premium feature - would persist across sessions)');
+            }
+
+            // Save profile (demo)
+            function saveProfile() {
+                const profileName = document.getElementById('profile-name').value;
+                if (!profileName) {
+                    alert('Please enter a profile name');
+                    return;
+                }
+                alert(`Profile "${profileName}" saved! (Premium feature)`);
+                document.getElementById('profile-name').value = '';
+            }
+
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set initial weights
+                updateWeights();
+            });
+        </script>
     </body>
 </html>

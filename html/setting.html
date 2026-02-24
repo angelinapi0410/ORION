@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>ORION - Settings</title>
+        <title>ORION - Individual Assets</title>
 
         <!-- CSS FILES -->      
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,84 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
+        <link href="css/apexcharts.css" rel="stylesheet">
+
         <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+        <style>
+            .sentiment-card {
+                border-radius: 20px;
+                transition: transform 0.2s;
+            }
+            .sentiment-card:hover {
+                transform: translateY(-5px);
+            }
+            .keyword-badge {
+                background-color: #f0f2f5;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                margin: 0 5px 5px 0;
+                display: inline-block;
+            }
+            .dimension-score {
+                font-size: 1.2rem;
+                font-weight: 700;
+            }
+            .risk-high {
+                color: #dc3545;
+            }
+            .risk-medium {
+                color: #ffc107;
+            }
+            .risk-low {
+                color: #28a745;
+            }
+            .heatmap-cell {
+                padding: 10px;
+                border-radius: 8px;
+                text-align: center;
+                color: white;
+                font-weight: 500;
+            }
+            .asset-class-tab {
+                cursor: pointer;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background: #f8f9fa;
+                margin-right: 10px;
+                transition: all 0.3s;
+            }
+            .asset-class-tab.active {
+                background: #0d6efd;
+                color: white;
+            }
+            .live-badge {
+                background-color: #dc3545;
+                color: white;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.7; }
+                100% { opacity: 1; }
+            }
+            .asset-selector {
+                cursor: pointer;
+                border: 1px solid #dee2e6;
+                transition: all 0.2s;
+            }
+            .asset-selector:hover {
+                background-color: #e9ecef;
+            }
+            .asset-selector.active {
+                border-color: #0d6efd;
+                background-color: #e7f1ff;
+            }
+        </style>
     </head>
     
     <body>
@@ -37,32 +114,32 @@
             </button>
 
             <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" name="search" type="text" placeholder="Search assets, sectors..." aria-label="Search">
             </form>
 
             <div class="navbar-nav me-lg-2">
                 <div class="nav-item text-nowrap d-flex align-items-center">
                     <div class="dropdown ps-3">
-                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarLightDropdownMenuLink">
                             <i class="bi-bell"></i>
                             <span class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
                                 <span class="visually-hidden">New alerts</span>
                             </span>
                         </a>
 
-                        <ul class="dropdown-menu notifications-block-wrap bg-white shadow">
+                        <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow" aria-labelledby="navbarLightDropdownMenuLink">
                             <small>Notifications</small>
 
                             <li class="notifications-block border-bottom pb-2 mb-2">
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex  align-items-center" href="#">
                                     <div class="notifications-icon-wrap bg-success">
                                         <i class="notifications-icon bi-check-circle-fill"></i>
                                     </div>
 
                                     <div>
-                                        <span>Your account has been created successfuly.</span>
+                                        <span>NVDA sentiment upgraded to positive</span>
 
-                                        <p>12 days ago</p>
+                                        <p>2 mins ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -74,9 +151,9 @@
                                     </div>
 
                                     <div>
-                                        <span>Please check. We have sent a Daily report.</span>
+                                        <span>High volatility detected in tech sector</span>
 
-                                        <p>10 days ago</p>
+                                        <p>15 mins ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -88,7 +165,7 @@
                                     </div>
 
                                     <div>
-                                        <span>Account verification failed.</span>
+                                        <span>ESG sentiment score updated for AAPL</span>
 
                                         <p>1 hour ago</p>
                                     </div>
@@ -208,14 +285,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="Overview.html">
                                     <i class="bi-house-fill me-2"></i>
-                                    Overview
+                                    Sentiment Overview
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="wallet.html">
-                                    <i class="bi-wallet me-2"></i>
-                                    My Wallet
+                                    <i class="bi-bar-chart me-2"></i>
+                                    Asset Classes
                                 </a>
                             </li>
 
@@ -228,28 +305,29 @@
 
                             <li class="nav-item">
                                 <a class="nav-link active" href="setting.html">
-                                    <i class="bi-gear me-2"></i>
-                                    Settings
+                                    <i class="bi-coin me-2"></i>
+                                    Individual Assets
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="help-center.html">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
+                                    <i class="bi-sliders2 me-2"></i>
+                                    Customize Weights
                                 </a>
                             </li>
 
                             <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
                                 <img src="images/credit-card.png" class="img-fluid" alt="">
-
-                                <a class="btn custom-btn" href="#">Upgrade</a>
+                                <h6 class="text-white mb-3">Unlock Premium Features</h6>
+                                <p class="text-white-50 small mb-3">Get access to keyword clusters and custom weightings</p>
+                                <a class="btn custom-btn btn-white" href="#">Upgrade Now</a>
                             </li>
 
                             <li class="nav-item border-top mt-auto pt-2">
                                 <a class="nav-link" href="login.html">
                                     <i class="bi-box-arrow-left me-2"></i>
-                                Logout
+                                    Logout
                                 </a>
                             </li>
                         </ul>
@@ -257,147 +335,455 @@
                 </nav>
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
-                    <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">Settings</h1>
+                    <div class="title-group mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h2 mb-0">Individual Assets</h1>
+                            <small class="text-muted">Deep-dive sentiment analysis for specific assets</small>
+                        </div>
+                        <div class="live-badge">
+                            <i class="bi-circle-fill me-1"></i>LIVE
+                        </div>
+                    </div>
+
+                    <!-- Asset Class Tabs -->
+                    <div class="d-flex mb-4 flex-wrap">
+                        <div class="asset-class-tab active" onclick="switchAssetClass('equities')">
+                            <i class="bi-graph-up me-2"></i>Equities
+                        </div>
+                        <div class="asset-class-tab" onclick="switchAssetClass('etfs')">
+                            <i class="bi-pie-chart me-2"></i>ETFs
+                        </div>
+                        <div class="asset-class-tab" onclick="switchAssetClass('bonds')">
+                            <i class="bi-bank me-2"></i>Fixed Income
+                        </div>
+                        <div class="asset-class-tab" onclick="switchAssetClass('crypto')">
+                            <i class="bi-currency-bitcoin me-2"></i>Digital Assets
+                        </div>
+                    </div>
+
+                    <!-- Asset Selector Row -->
+                    <div class="row mb-4 g-2">
+                        <div class="col-md-3 col-6">
+                            <div class="p-3 bg-white rounded-3 asset-selector active" onclick="selectAsset('nvda')">
+                                <div class="d-flex justify-content-between">
+                                    <strong>NVDA</strong>
+                                    <span class="risk-high">High Risk</span>
+                                </div>
+                                <small>Nvidia Corp.</small>
+                                <div class="mt-2 d-flex justify-content-between">
+                                    <span>Score: 0.43</span>
+                                    <i class="bi-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="p-3 bg-white rounded-3 asset-selector" onclick="selectAsset('aapl')">
+                                <div class="d-flex justify-content-between">
+                                    <strong>AAPL</strong>
+                                    <span class="risk-medium">Medium Risk</span>
+                                </div>
+                                <small>Apple Inc.</small>
+                                <div class="mt-2 d-flex justify-content-between">
+                                    <span>Score: 0.60</span>
+                                    <i class="bi-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="p-3 bg-white rounded-3 asset-selector" onclick="selectAsset('msft')">
+                                <div class="d-flex justify-content-between">
+                                    <strong>MSFT</strong>
+                                    <span class="risk-medium">Medium Risk</span>
+                                </div>
+                                <small>Microsoft</small>
+                                <div class="mt-2 d-flex justify-content-between">
+                                    <span>Score: 0.58</span>
+                                    <i class="bi-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="p-3 bg-white rounded-3 asset-selector" onclick="selectAsset('tsla')">
+                                <div class="d-flex justify-content-between">
+                                    <strong>TSLA</strong>
+                                    <span class="risk-high">High Risk</span>
+                                </div>
+                                <small>Tesla Inc.</small>
+                                <div class="mt-2 d-flex justify-content-between">
+                                    <span>Score: 0.35</span>
+                                    <i class="bi-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row my-4">
                         <div class="col-lg-7 col-12">
+                            <!-- Asset Sentiment Trend Card -->
+                            <div class="custom-block bg-white mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="mb-0">Nvidia (NVDA) - Sentiment Trend</h5>
+                                    <div>
+                                        <small class="text-muted me-2">Last 90 days</small>
+                                        <i class="bi-info-circle" data-bs-toggle="tooltip" title="Daily sentiment scores based on weighted average"></i>
+                                    </div>
+                                </div>
+                                <div id="asset-trend-chart"></div>
+                                <div class="mt-3 text-center small text-muted">
+                                    <span class="me-3"><i class="bi-arrow-up text-success"></i> +12% vs sector</span>
+                                    <span><i class="bi-calendar"></i> Updated: Mar 24, 2026</span>
+                                </div>
+                            </div>
+
+                            <!-- Peer Comparison -->
+                            <div class="custom-block bg-white mb-4">
+                                <h5 class="mb-3">Peer Comparison (Tech Sector)</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Asset</th>
+                                                <th>Overall</th>
+                                                <th>Safety</th>
+                                                <th>Growth</th>
+                                                <th>Volatility</th>
+                                                <th>ESG</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-active">
+                                                <td><strong>NVDA</strong></td>
+                                                <td>0.43</td>
+                                                <td class="text-danger">0.20</td>
+                                                <td class="text-success">0.88</td>
+                                                <td class="text-warning">0.75</td>
+                                                <td>0.40</td>
+                                            </tr>
+                                            <tr>
+                                                <td>AAPL</td>
+                                                <td>0.60</td>
+                                                <td>0.55</td>
+                                                <td>0.60</td>
+                                                <td>0.40</td>
+                                                <td>0.65</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MSFT</td>
+                                                <td>0.58</td>
+                                                <td>0.60</td>
+                                                <td>0.62</td>
+                                                <td>0.38</td>
+                                                <td>0.70</td>
+                                            </tr>
+                                            <tr>
+                                                <td>AMD</td>
+                                                <td>0.40</td>
+                                                <td>0.25</td>
+                                                <td>0.75</td>
+                                                <td>0.72</td>
+                                                <td>0.42</td>
+                                            </tr>
+                                            <tr>
+                                                <td>INTC</td>
+                                                <td>0.32</td>
+                                                <td>0.30</td>
+                                                <td>0.28</td>
+                                                <td>0.55</td>
+                                                <td>0.45</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Keyword Cloud / Top Themes -->
                             <div class="custom-block bg-white">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">Profile</button>
-                                    </li>
-
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">Password</button>
-                                    </li>
-
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="notification-tab" data-bs-toggle="tab" data-bs-target="#notification-tab-pane" type="button" role="tab" aria-controls="notification-tab-pane" aria-selected="false">Notification</button>
-                                    </li>
-                                </ul>
-
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                                        <h6 class="mb-4">User Profile</h6>
-
-                                        <form class="custom-form profile-form" action="#" method="post" role="form">
-                                            <input class="form-control" type="text" name="profile-name" id="profile-name" placeholder="John Doe">
-
-                                            <input class="form-control" type="email" name="profile-email" id="profile-email" placeholder="Johndoe@gmail.com">
-
-                                            <div class="input-group mb-1">
-                                                <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg" class="profile-image img-fluid" alt="">
-
-                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                            </div>
-
-                                            <div class="d-flex">
-                                                <button type="button" class="form-control me-3">
-                                                    Reset
-                                                </button>
-
-                                                <button type="submit" class="form-control ms-2">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="0">
-                                        <h6 class="mb-4">Password</h6>
-
-                                        <form class="custom-form password-form" action="#" method="post" role="form">
-                                            <input type="password" name="password" id="password" pattern="[0-9a-zA-Z]{4,10}" class="form-control" placeholder="Current Password" required="">
-
-                                            <input type="password" name="confirm_password" id="confirm_password" pattern="[0-9a-zA-Z]{4,10}" class="form-control" placeholder="New Password" required="">
-
-                                            <input type="password" name="confirm_password" id="confirm_password" pattern="[0-9a-zA-Z]{4,10}" class="form-control" placeholder="Confirm Password" required="">
-
-                                            <div class="d-flex">
-                                                <button type="button" class="form-control me-3">
-                                                    Reset
-                                                </button>
-
-                                                <button type="submit" class="form-control ms-2">
-                                                    Update Password
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div class="tab-pane fade" id="notification-tab-pane" role="tabpanel" aria-labelledby="notification-tab" tabindex="0">
-                                        <h6 class="mb-4">Notification</h6>
-
-                                        <form class="custom-form notification-form" action="#" method="post" role="form">
-
-                                            <div class="form-check form-switch d-flex mb-3 ps-0">
-                                                <label class="form-check-label" for="flexSwitchCheckCheckedOne">Account activity</label>
-
-                                                <input class="form-check-input ms-auto" type="checkbox" name="form-check-input" role="switch" id="flexSwitchCheckCheckedOne" checked>
-                                            </div>
-
-                                            <div class="form-check form-switch d-flex mb-3 ps-0">
-                                                <label class="form-check-label" for="flexSwitchCheckCheckedTwo">Payment updated</label>
-
-                                                <input class="form-check-input ms-auto" type="checkbox" name="form-check-input" role="switch" id="flexSwitchCheckCheckedTwo" checked>
-                                            </div>
-
-                                            <div class="d-flex mt-4">
-                                                <button type="button" class="form-control me-3">
-                                                    Reset
-                                                </button>
-
-                                                <button type="submit" class="form-control ms-2">
-                                                    Update Password
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <h5 class="mb-3">Top Themes & Keywords</h5>
+                                <div class="d-flex flex-wrap">
+                                    <span class="keyword-badge" style="font-size: 1.2rem;">AI demand</span>
+                                    <span class="keyword-badge" style="font-size: 1.1rem;">data center growth</span>
+                                    <span class="keyword-badge" style="font-size: 0.9rem;">high valuation</span>
+                                    <span class="keyword-badge" style="font-size: 1.3rem;">export restrictions</span>
+                                    <span class="keyword-badge" style="font-size: 1.0rem;">chip cycle</span>
+                                    <span class="keyword-badge" style="font-size: 0.95rem;">record revenue</span>
+                                    <span class="keyword-badge" style="font-size: 1.2rem;">concentration risk</span>
+                                    <span class="keyword-badge" style="font-size: 1.1rem;">regulation risk</span>
+                                    <span class="keyword-badge" style="font-size: 1.0rem;">energy consumption</span>
+                                    <span class="keyword-badge" style="font-size: 0.85rem;">manufacturing footprint</span>
+                                    <span class="keyword-badge" style="font-size: 0.9rem;">earnings volatility</span>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi-lock me-1"></i>
+                                        <a href="#" class="text-decoration-none">Unlock real-time keyword clusters</a> (Premium)
+                                    </small>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-5 col-12">
-                            <div class="custom-block custom-block-contact">
-                                <h6 class="mb-4">Still can’t find what you looking for?</h6>
+                            <!-- Nvidia Detailed Sentiment Card (from documentation) -->
+                            <div class="custom-block sentiment-card bg-white mb-4">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="mb-1">Nvidia Corp. (NVDA)</h5>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-light text-dark me-2">Tech</span>
+                                            <span class="risk-high"><i class="bi-shield me-1"></i>High Risk</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <h3 class="mb-0">0.43</h3>
+                                        <small class="text-muted">Overall Score</small>
+                                    </div>
+                                </div>
+                                
+                                <hr class="my-3">
+                                
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Safety/Capital Preservation</span>
+                                        <span class="dimension-score">0.20</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 20%"></div>
+                                    </div>
+                                    <div class="keyword-badge">high valuation</div>
+                                    <div class="keyword-badge">chip cycle</div>
+                                    <div class="keyword-badge">concentration risk</div>
+                                </div>
 
-                                <p>
-                                    <strong>Call us:</strong>
-                                    <a href="tel: 305-240-9671" class="ms-2">
-                                        (60) 
-                                        305-240-9671
-                                    </a>
-                                </p>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Growth/Opportunity</span>
+                                        <span class="dimension-score">0.88</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-info" style="width: 88%"></div>
+                                    </div>
+                                    <div class="keyword-badge">AI demand</div>
+                                    <div class="keyword-badge">data center growth</div>
+                                    <div class="keyword-badge">record revenue</div>
+                                </div>
 
-                                <a href="#" class="btn custom-btn custom-btn-bg-white mt-3">
-                                    Chat with us
-                                </a>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Volatility/Uncertainty</span>
+                                        <span class="dimension-score">0.75</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 75%"></div>
+                                    </div>
+                                    <div class="keyword-badge">export restrictions</div>
+                                    <div class="keyword-badge">earnings volatility</div>
+                                    <div class="keyword-badge">regulation risk</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>ESG/Responsibility</span>
+                                        <span class="dimension-score">0.40</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 40%"></div>
+                                    </div>
+                                    <div class="keyword-badge">energy consumption</div>
+                                    <div class="keyword-badge">manufacturing footprint</div>
+                                    <div class="keyword-badge">ESG disclosure</div>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi-lock me-1"></i>
+                                        <a href="#" class="text-decoration-none">Unlock keywords behind the score</a> (Premium)
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- Quick Insights Card -->
+                            <div class="custom-block bg-white mb-4">
+                                <h5 class="mb-3">Quick Insights</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2 pb-2 border-bottom d-flex">
+                                        <i class="bi bi-exclamation-triangle text-warning me-2"></i>
+                                        <span><strong>Risk Alert:</strong> High valuation & chip cycle concentration</span>
+                                    </li>
+                                    <li class="mb-2 pb-2 border-bottom d-flex">
+                                        <i class="bi bi-rocket text-primary me-2"></i>
+                                        <span><strong>Growth Driver:</strong> AI demand continues to accelerate</span>
+                                    </li>
+                                    <li class="mb-2 pb-2 border-bottom d-flex">
+                                        <i class="bi bi-shield-shaded text-danger me-2"></i>
+                                        <span><strong>Uncertainty:</strong> Export restrictions to China remain key risk</span>
+                                    </li>
+                                    <li class="d-flex">
+                                        <i class="bi bi-recycle text-success me-2"></i>
+                                        <span><strong>ESG Note:</strong> Below sector average; energy use in focus</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Weight Preview Card -->
+                            <div class="custom-block primary-bg">
+                                <h5 class="text-white mb-3">Your Custom Score</h5>
+                                <p class="text-white-50 small mb-3">Based on your profile weights (Growth: 50%, Volatility: 30%, Safety: 10%, ESG: 10%)</p>
+                                <div class="d-flex justify-content-between text-white mb-2">
+                                    <span>Standard Score:</span>
+                                    <span>0.43</span>
+                                </div>
+                                <div class="d-flex justify-content-between text-white mb-3">
+                                    <span>Your Custom Score:</span>
+                                    <span class="h4 mb-0">0.66</span>
+                                </div>
+                                <div class="progress mb-3" style="height: 8px;">
+                                    <div class="progress-bar bg-info" style="width: 66%"></div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <a class="btn btn-outline-light btn-sm" href="#">Adjust Weights (Premium)</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <footer class="site-footer">
+                    <footer class="site-footer mt-4">
                         <div class="container">
                             <div class="row">
-                                
                                 <div class="col-lg-12 col-12">
-                                    <p class="copyright-text">Copyright © ORION 2026 </p>
+                                    <p class="copyright-text">Copyright © ORION 2026 | Individual Asset Sentiment Analysis</p>
                                 </div>
-
                             </div>
                         </div>
                     </footer>
                 </main>
-
             </div>
         </div>
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/apexcharts.min.js"></script>
         <script src="js/custom.js"></script>
 
+        <script type="text/javascript">
+            // Asset Trend Chart (90 days)
+            var assetTrendOptions = {
+                series: [{
+                    name: 'NVDA Sentiment',
+                    data: [0.32, 0.35, 0.33, 0.30, 0.28, 0.33, 0.38, 0.40, 0.42, 0.45, 0.48, 0.52, 0.50, 0.47, 0.45, 0.48, 0.50, 0.49, 0.45, 0.42, 0.40, 0.43, 0.45, 0.47, 0.44, 0.42, 0.40, 0.38, 0.41, 0.43, 0.45, 0.48, 0.50, 0.52, 0.55, 0.58, 0.60, 0.58, 0.55, 0.52, 0.48, 0.45, 0.42, 0.40, 0.38, 0.35, 0.37, 0.40, 0.42, 0.44, 0.43, 0.41, 0.40, 0.42, 0.44, 0.46, 0.48, 0.50, 0.49, 0.47, 0.46, 0.45, 0.44, 0.46, 0.48, 0.47, 0.45, 0.43, 0.41, 0.40, 0.39, 0.38, 0.40, 0.42, 0.41, 0.40, 0.39, 0.41, 0.43, 0.42, 0.44, 0.46, 0.48, 0.47, 0.45, 0.44, 0.42, 0.43, 0.45, 0.43]
+                }],
+                chart: {
+                    type: 'area',
+                    height: 250,
+                    toolbar: {
+                        show: false
+                    },
+                    zoom: {
+                        enabled: true
+                    }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3,
+                    colors: ['#0d6efd']
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.5,
+                        opacityTo: 0.2,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                markers: {
+                    size: 3,
+                    colors: ['#0d6efd'],
+                    strokeColors: '#fff',
+                    strokeWidth: 2
+                },
+                xaxis: {
+                    type: 'datetime',
+                    categories: Array.from({length: 90}, (_, i) => {
+                        const d = new Date();
+                        d.setDate(d.getDate() - (89 - i));
+                        return d.getTime();
+                    }),
+                    labels: {
+                        format: 'dd MMM',
+                        rotate: 0,
+                        trim: true,
+                        maxItems: 8
+                    }
+                },
+                yaxis: {
+                    min: 0,
+                    max: 1,
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(1)
+                        }
+                    }
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd MMM yyyy'
+                    },
+                    y: {
+                        formatter: function(val) {
+                            return val.toFixed(2)
+                        }
+                    }
+                },
+                annotations: {
+                    yaxis: [{
+                        y: 0.43,
+                        borderColor: '#ff0000',
+                        label: {
+                            borderColor: '#ff0000',
+                            style: {
+                                color: '#fff',
+                                background: '#ff0000'
+                            },
+                            text: 'Current: 0.43'
+                        }
+                    }]
+                }
+            };
+
+            var assetTrendChart = new ApexCharts(document.querySelector("#asset-trend-chart"), assetTrendOptions);
+            assetTrendChart.render();
+
+            // Tooltip initialization
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+
+            // Asset class switching function (placeholder)
+            function switchAssetClass(assetClass) {
+                document.querySelectorAll('.asset-class-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                event.target.closest('.asset-class-tab').classList.add('active');
+                console.log('Switched asset class to: ' + assetClass);
+                // In real implementation, update asset list via AJAX
+            }
+
+            // Select asset function (placeholder)
+            function selectAsset(asset) {
+                document.querySelectorAll('.asset-selector').forEach(el => {
+                    el.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+                console.log('Selected asset: ' + asset);
+                // In real implementation, load asset data via AJAX
+                // For now we keep showing NVDA as demo
+                if (asset !== 'nvda') {
+                    alert('Demo: Asset view would update with ' + asset.toUpperCase() + ' data');
+                }
+            }
+        </script>
     </body>
 </html>

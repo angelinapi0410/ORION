@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>ORION - Wallet Page</title>
+        <title>ORION - Asset Classes</title>
 
         <!-- CSS FILES -->      
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,86 @@
         <link href="css/apexcharts.css" rel="stylesheet">
 
         <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+        <style>
+            .asset-card {
+                border-radius: 20px;
+                transition: transform 0.2s;
+                cursor: pointer;
+                border: 1px solid #e9ecef;
+            }
+            .asset-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .asset-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+            }
+            .sentiment-badge {
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
+            .sentiment-positive {
+                background-color: #d4edda;
+                color: #155724;
+            }
+            .sentiment-neutral {
+                background-color: #fff3cd;
+                color: #856404;
+            }
+            .sentiment-negative {
+                background-color: #f8d7da;
+                color: #721c24;
+            }
+            .dimension-tag {
+                background-color: #f8f9fa;
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                margin: 0 5px 5px 0;
+                display: inline-block;
+            }
+            .progress-sm {
+                height: 4px;
+            }
+            .live-indicator {
+                width: 8px;
+                height: 8px;
+                background-color: #dc3545;
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 5px;
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+            .nav-tabs-custom {
+                border-bottom: 2px solid #e9ecef;
+            }
+            .nav-tabs-custom .nav-link {
+                border: none;
+                color: #6c757d;
+                font-weight: 500;
+                padding: 12px 24px;
+                margin-right: 10px;
+            }
+            .nav-tabs-custom .nav-link.active {
+                color: #0d6efd;
+                background: none;
+                border-bottom: 2px solid #0d6efd;
+            }
+        </style>
     </head>
     
     <body>
@@ -39,7 +119,7 @@
             </button>
 
             <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" name="search" type="text" placeholder="Search asset classes, sectors..." aria-label="Search">
             </form>
 
             <div class="navbar-nav me-lg-2">
@@ -62,9 +142,8 @@
                                     </div>
 
                                     <div>
-                                        <span>Your account has been created successfuly.</span>
-
-                                        <p>12 days ago</p>
+                                        <span>Equities sentiment upgraded to positive</span>
+                                        <p>5 mins ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -76,9 +155,8 @@
                                     </div>
 
                                     <div>
-                                        <span>Please check. We have sent a Daily report.</span>
-
-                                        <p>10 days ago</p>
+                                        <span>New sectors added to Digital Assets</span>
+                                        <p>1 hour ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -90,9 +168,8 @@
                                     </div>
 
                                     <div>
-                                        <span>Account verification failed.</span>
-
-                                        <p>1 hour ago</p>
+                                        <span>Bond market volatility alert</span>
+                                        <p>2 hours ago</p>
                                     </div>
                                 </a>
                             </li>
@@ -207,17 +284,18 @@
                 <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
                     <div class="position-sticky py-4 px-3 sidebar-sticky">
                         <ul class="nav flex-column h-100">
+                            
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="Overview.html">
                                     <i class="bi-house-fill me-2"></i>
-                                    Overview
+                                    Sentiment Overview
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link active" href="wallet.html">
-                                    <i class="bi-wallet me-2"></i>
-                                    My Wallet
+                                    <i class="bi-bar-chart me-2"></i>
+                                    Asset Classes
                                 </a>
                             </li>
 
@@ -230,22 +308,23 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="setting.html">
-                                    <i class="bi-gear me-2"></i>
-                                    Settings
+                                    <i class="bi-coin me-2"></i>
+                                    Individual Assets
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="help-center.html">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
+                                    <i class="bi-sliders2 me-2"></i>
+                                    Customize Weights
                                 </a>
                             </li>
 
                             <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
                                 <img src="images/credit-card.png" class="img-fluid" alt="">
-
-                                <a class="btn custom-btn" href="#">Upgrade</a>
+                                <h6 class="text-white mb-3">Unlock Premium Features</h6>
+                                <p class="text-white-50 small mb-3">Get detailed sector analysis and custom weightings</p>
+                                <a class="btn custom-btn btn-white" href="#">Upgrade Now</a>
                             </li>
 
                             <li class="nav-item border-top mt-auto pt-2">
@@ -259,425 +338,395 @@
                 </nav>
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
-                    <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">Wallet</h1>
+                    <div class="title-group mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h2 mb-0">Asset Classes</h1>
+                            <small class="text-muted">Sentiment analysis across major asset classes</small>
+                        </div>
+                        <div>
+                            <span class="live-indicator"></span>
+                            <span class="text-muted small">Live updates</span>
+                        </div>
                     </div>
 
-                    <div class="row my-4">
-                        <div class="col-lg-12 col-12">
-                            <div class="custom-block bg-white">
-                                <h5 class="mb-4">Account Activities</h5>
-
-                                <div class="table-responsive">
-                                    <table class="account-table table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Date</th>
-
-                                                <th scope="col">Time</th>
-
-                                                <th scope="col">Description</th>
-
-                                                <th scope="col">Payment Type</th>
-
-                                                <th scope="col">Amount</th>
-
-                                                <th scope="col">Balance</th>
-
-                                                <th scope="col">Status</th>
-
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">July 5, 2023</td>
-
-                                                <td scope="row">10:00 PM</td>
-
-                                                <td scope="row">Shopping</td>
-
-                                                <td scope="row">C2C Transfer</td>
-
-                                                <td class="text-danger" scope="row">
-                                                    <span class="me-1">-</span>
-                                                    $100.00
-                                                </td>
-
-                                                <td scope="row">$5,500.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-danger">
-                                                        Pending
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">July 2, 2023</td>
-
-                                                <td scope="row">10:42 AM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                    <span class="me-1">+</span>
-                                                    $250
-                                                </td>
-
-                                                <td scope="row">$5,600.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">June 28, 2023</td>
-
-                                                <td scope="row">8:20 PM</td>
-
-                                                <td scope="row">Billing</td>
-
-                                                <td scope="row">Goverment</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$50</td>
-
-                                                <td scope="row">$5,350.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">June 24, 2023</td>
-
-                                                <td scope="row">10:48 PM</td>
-
-                                                <td scope="row">Shopee</td>
-
-                                                <td scope="row">QR Code</td>
-
-                                                <td class="text-danger" scope="row">
-                                                <span class="me-2">-</span>$380</td>
-
-                                                <td scope="row">$5,300.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-dark">
-                                                        Cancelled
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">June 12, 2023</td>
-
-                                                <td scope="row">12:30 AM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$250</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">May 31, 2023</td>
-
-                                                <td scope="row">2:40 PM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$50</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">May 22, 2023</td>
-
-                                                <td scope="row">8:50 AM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$50</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">May 20, 2023</td>
-
-                                                <td scope="row">6:45 PM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-danger" scope="row">
-                                                <span class="me-2">-</span>$500</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-danger">
-                                                        Pending
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">April 28, 2023</td>
-
-                                                <td scope="row">11:20 AM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$856</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-success">
-                                                        Success
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">April 16, 2023</td>
-
-                                                <td scope="row">11:00 PM</td>
-
-                                                <td scope="row">Food Delivery</td>
-
-                                                <td scope="row">Mobile Reload</td>
-
-                                                <td class="text-success" scope="row">
-                                                <span class="me-2">+</span>$50</td>
-
-                                                <td scope="row">$4,920.00</td>
-
-                                                <td scope="row">
-                                                    <span class="badge text-bg-danger">
-                                                        Pending
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">Prev</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="page-item active" aria-current="page">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">4</a>
-                                            </li>
-                                            
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-7 col-12">
-                            <div class="custom-block custom-block-balance">
-                                <small>Your Balance</small>
-
-                                <h2 class="mt-2 mb-3">$254,800</h2>
-
-                                <div class="custom-block-numbers d-flex align-items-center">
-                                    <span>****</span>
-                                    <span>****</span>
-                                    <span>****</span>
-                                    <p>2560</p>
-                                </div>
-
-                                <div class="d-flex">
+                    <!-- Asset Class Summary Cards -->
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-6 col-12 mb-3">
+                            <div class="asset-card bg-white p-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="asset-icon bg-primary bg-opacity-10 text-primary me-3">
+                                        <i class="bi-graph-up"></i>
+                                    </div>
                                     <div>
-                                        <small>Valid Date</small>
-                                        <p>12/2028</p>
-                                    </div>
-
-                                    <div class="ms-auto">
-                                        <small>Card Holder</small>
-                                        <p>Thomas</p>
+                                        <h6 class="mb-0">Equities</h6>
+                                        <small class="text-muted">Stocks</small>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-wallet"></i>
-
-                                        <small>Top up</small>
-                                    </a>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-muted">Overall Sentiment</span>
+                                    <span class="fw-bold">0.68</span>
                                 </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-upc-scan"></i>
-
-                                        <small>Scan & Pay</small>
-                                    </a>
+                                <div class="progress progress-sm mb-3">
+                                    <div class="progress-bar bg-success" style="width: 68%"></div>
                                 </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-send"></i>
-
-                                        <small>Send</small>
-                                    </a>
-                                </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-arrow-down"></i>
-
-                                        <small>Request</small>
-                                    </a>
+                                <div class="d-flex justify-content-between">
+                                    <span class="sentiment-badge sentiment-positive">Bullish</span>
+                                    <small class="text-muted">12 sectors</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-5 col-12">
-                            <div class="custom-block custom-block-transations">
-                                <h5 class="mb-4">Recent Transations</h5>
-
-                                <div class="d-flex flex-wrap align-items-center mb-4">
-                                    <div class="d-flex align-items-center">
-                                        <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg" class="profile-image img-fluid" alt="">
-
-                                        <div>
-                                            <p>
-                                                <a href="transation-detail.html">Daniel Jones</a>
-                                            </p>
-
-                                            <small class="text-muted">C2C Transfer</small>
-                                        </div>
+                        <div class="col-lg-3 col-md-6 col-12 mb-3">
+                            <div class="asset-card bg-white p-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="asset-icon bg-info bg-opacity-10 text-info me-3">
+                                        <i class="bi-pie-chart"></i>
                                     </div>
-
-                                    <div class="ms-auto">
-                                        <small>05/12/2023</small>
-                                        <strong class="d-block text-danger"><span class="me-1">-</span> $250</strong>
+                                    <div>
+                                        <h6 class="mb-0">ETFs</h6>
+                                        <small class="text-muted">Exchange Traded Funds</small>
                                     </div>
                                 </div>
-
-                                <div class="d-flex flex-wrap align-items-center mb-4">
-                                    <div class="d-flex align-items-center">
-                                        <img src="images/profile/young-beautiful-woman-pink-warm-sweater.jpg" class="profile-image img-fluid" alt="">
-
-                                        <div>
-                                            <p>
-                                                <a href="transation-detail.html">Public Bank</a>
-                                            </p>
-
-                                            <small class="text-muted">Mobile Reload</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="ms-auto">
-                                        <small>22/8/2023</small>
-                                        <strong class="d-block text-success"><span class="me-1">+</span> $280</strong>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-muted">Overall Sentiment</span>
+                                    <span class="fw-bold">0.52</span>
                                 </div>
-
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="images/profile/young-woman-with-round-glasses-yellow-sweater.jpg" class="profile-image img-fluid" alt="">
-
-                                        <div>
-                                            <p><a href="transation-detail.html">Store</a></p>
-
-                                            <small class="text-muted">Payment Received</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="ms-auto">
-                                        <small>22/8/2023</small>
-                                        <strong class="d-block text-success"><span class="me-1">+</span> $280</strong>
-                                    </div>
+                                <div class="progress progress-sm mb-3">
+                                    <div class="progress-bar bg-warning" style="width: 52%"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="sentiment-badge sentiment-neutral">Neutral</span>
+                                    <small class="text-muted">8 categories</small>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="col-lg-3 col-md-6 col-12 mb-3">
+                            <div class="asset-card bg-white p-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="asset-icon bg-secondary bg-opacity-10 text-secondary me-3">
+                                        <i class="bi-bank"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Fixed Income</h6>
+                                        <small class="text-muted">Bonds</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-muted">Overall Sentiment</span>
+                                    <span class="fw-bold">0.45</span>
+                                </div>
+                                <div class="progress progress-sm mb-3">
+                                    <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="sentiment-badge sentiment-neutral">Neutral</span>
+                                    <small class="text-muted">6 types</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-3">
+                            <div class="asset-card bg-white p-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="asset-icon bg-warning bg-opacity-10 text-warning me-3">
+                                        <i class="bi-currency-bitcoin"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Digital Assets</h6>
+                                        <small class="text-muted">Cryptocurrencies</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-muted">Overall Sentiment</span>
+                                    <span class="fw-bold">0.38</span>
+                                </div>
+                                <div class="progress progress-sm mb-3">
+                                    <div class="progress-bar bg-danger" style="width: 38%"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="sentiment-badge sentiment-negative">Bearish</span>
+                                    <small class="text-muted">15 assets</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <footer class="site-footer">
+                    <!-- Detailed Asset Class Tabs -->
+                    <ul class="nav nav-tabs-custom mb-4" id="assetClassTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="equities-tab" data-bs-toggle="tab" data-bs-target="#equities" type="button" role="tab">Equities</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="etfs-tab" data-bs-toggle="tab" data-bs-target="#etfs" type="button" role="tab">ETFs</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="fixedincome-tab" data-bs-toggle="tab" data-bs-target="#fixedincome" type="button" role="tab">Fixed Income</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="digital-tab" data-bs-toggle="tab" data-bs-target="#digital" type="button" role="tab">Digital Assets</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="assetClassContent">
+                        <!-- Equities Tab -->
+                        <div class="tab-pane fade show active" id="equities" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-4">Sector Sentiment Distribution</h5>
+                                        <div id="equitiesSectorChart"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-3">Top Sectors</h5>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Technology</span>
+                                                <span class="text-success">0.75</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-success" style="width: 75%"></div>
+                                            </div>
+                                            <div class="dimension-tag">AI boom</div>
+                                            <div class="dimension-tag">Cloud growth</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Healthcare</span>
+                                                <span class="text-success">0.72</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-success" style="width: 72%"></div>
+                                            </div>
+                                            <div class="dimension-tag">Innovation</div>
+                                            <div class="dimension-tag">Aging population</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Financials</span>
+                                                <span class="text-warning">0.48</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 48%"></div>
+                                            </div>
+                                            <div class="dimension-tag">Rate cuts</div>
+                                            <div class="dimension-tag">Loan growth</div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <a href="sectors.html" class="btn btn-outline-primary btn-sm">View All Sectors</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ETFs Tab -->
+                        <div class="tab-pane fade" id="etfs" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-4">ETF Category Performance</h5>
+                                        <div id="etfsChart"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-3">Top ETF Categories</h5>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Tech ETFs</span>
+                                                <span class="text-success">0.71</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-success" style="width: 71%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>ESG ETFs</span>
+                                                <span class="text-success">0.65</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-success" style="width: 65%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Bond ETFs</span>
+                                                <span class="text-warning">0.52</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 52%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fixed Income Tab -->
+                        <div class="tab-pane fade" id="fixedincome" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-4">Bond Sentiment by Type</h5>
+                                        <div id="bondsChart"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-3">Bond Types</h5>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Government</span>
+                                                <span class="text-success">0.62</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-success" style="width: 62%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Corporate</span>
+                                                <span class="text-warning">0.48</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 48%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Municipal</span>
+                                                <span class="text-warning">0.51</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 51%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Digital Assets Tab -->
+                        <div class="tab-pane fade" id="digital" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-4">Crypto Sentiment Trends</h5>
+                                        <div id="cryptoChart"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="custom-block bg-white mb-4">
+                                        <h5 class="mb-3">Top Cryptocurrencies</h5>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Bitcoin</span>
+                                                <span class="text-warning">0.42</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 42%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Ethereum</span>
+                                                <span class="text-warning">0.45</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Solana</span>
+                                                <span class="text-danger">0.31</span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2">
+                                                <div class="progress-bar bg-danger" style="width: 31%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Asset Activity -->
+                    <div class="custom-block bg-white mt-4">
+                        <h5 class="mb-4">Recent Asset Activity</h5>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th>Class</th>
+                                        <th>Sector/Category</th>
+                                        <th>Sentiment</th>
+                                        <th>Change</th>
+                                        <th>Risk Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Apple (AAPL)</td>
+                                        <td>Equities</td>
+                                        <td>Technology</td>
+                                        <td>
+                                            <span class="badge bg-success">0.60</span>
+                                        </td>
+                                        <td class="text-success">+0.05</td>
+                                        <td><span class="badge bg-warning">Medium</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nvidia (NVDA)</td>
+                                        <td>Equities</td>
+                                        <td>Technology</td>
+                                        <td>
+                                            <span class="badge bg-warning">0.43</span>
+                                        </td>
+                                        <td class="text-danger">-0.08</td>
+                                        <td><span class="badge bg-danger">High</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>BTC-USD</td>
+                                        <td>Digital Assets</td>
+                                        <td>Cryptocurrency</td>
+                                        <td>
+                                            <span class="badge bg-warning">0.42</span>
+                                        </td>
+                                        <td class="text-success">+0.12</td>
+                                        <td><span class="badge bg-danger">High</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IVV</td>
+                                        <td>ETFs</td>
+                                        <td>S&P 500 ETF</td>
+                                        <td>
+                                            <span class="badge bg-success">0.65</span>
+                                        </td>
+                                        <td class="text-success">+0.03</td>
+                                        <td><span class="badge bg-success">Low</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <footer class="site-footer mt-4">
                         <div class="container">
                             <div class="row">
-                                
                                 <div class="col-lg-12 col-12">
-                                    <p class="copyright-text">Copyright © ORION 2026 </p>
+                                    <p class="copyright-text">Copyright © ORION 2026 | Asset Class Sentiment Analysis</p>
                                 </div>
-
                             </div>
                         </div>
                     </footer>
                 </main>
-
             </div>
         </div>
 
@@ -686,5 +735,171 @@
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/apexcharts.min.js"></script>
         <script src="js/custom.js"></script>
+
+        <script type="text/javascript">
+            // Equities Sector Chart
+            var equitiesOptions = {
+                series: [{
+                    name: 'Sentiment Score',
+                    data: [0.75, 0.72, 0.55, 0.48, 0.45, 0.42]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: false,
+                        columnWidth: '55%',
+                    }
+                },
+                colors: ['#0d6efd'],
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: ['Technology', 'Healthcare', 'Energy', 'Financials', 'Real Estate', 'Utilities'],
+                },
+                yaxis: {
+                    min: 0,
+                    max: 1,
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(1)
+                        }
+                    }
+                }
+            };
+
+            var equitiesChart = new ApexCharts(document.querySelector("#equitiesSectorChart"), equitiesOptions);
+            equitiesChart.render();
+
+            // ETFs Chart
+            var etfsOptions = {
+                series: [{
+                    name: 'Sentiment Score',
+                    data: [0.71, 0.65, 0.58, 0.52, 0.48, 0.45]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: false,
+                        columnWidth: '55%',
+                    }
+                },
+                colors: ['#0dcaf0'],
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: ['Tech ETFs', 'ESG ETFs', 'Healthcare ETFs', 'Bond ETFs', 'Commodity ETFs', 'Real Estate ETFs'],
+                },
+                yaxis: {
+                    min: 0,
+                    max: 1,
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(1)
+                        }
+                    }
+                }
+            };
+
+            var etfsChart = new ApexCharts(document.querySelector("#etfsChart"), etfsOptions);
+            etfsChart.render();
+
+            // Bonds Chart
+            var bondsOptions = {
+                series: [{
+                    name: 'Sentiment Score',
+                    data: [0.62, 0.55, 0.51, 0.48, 0.42]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: false,
+                        columnWidth: '55%',
+                    }
+                },
+                colors: ['#6c757d'],
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: ['Government', 'Agency', 'Municipal', 'Corporate', 'High Yield'],
+                },
+                yaxis: {
+                    min: 0,
+                    max: 1,
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(1)
+                        }
+                    }
+                }
+            };
+
+            var bondsChart = new ApexCharts(document.querySelector("#bondsChart"), bondsOptions);
+            bondsChart.render();
+
+            // Crypto Chart
+            var cryptoOptions = {
+                series: [{
+                    name: 'Sentiment Score',
+                    data: [0.45, 0.42, 0.38, 0.35, 0.31, 0.28]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: false,
+                        columnWidth: '55%',
+                    }
+                },
+                colors: ['#ffc107'],
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: ['Ethereum', 'Bitcoin', 'Solana', 'Cardano', 'Polkadot', 'Chainlink'],
+                },
+                yaxis: {
+                    min: 0,
+                    max: 1,
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(1)
+                        }
+                    }
+                }
+            };
+
+            var cryptoChart = new ApexCharts(document.querySelector("#cryptoChart"), cryptoOptions);
+            cryptoChart.render();
+        </script>
     </body>
 </html>
